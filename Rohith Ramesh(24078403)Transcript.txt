@@ -1,0 +1,28 @@
+﻿24078403
+  
+
+  Rohith Ramesh
+  MSc Data Science
+  24078403
+   Transcript
+Hi, my name is Rohith, and in this video I’m going to explain my mini project on Support Vector Machines, or SVMs. The aim of my project is to show how changing the kernel and some settings called C and gamma changes the decision boundary that the SVM learns.
+For this project, I use a small synthetic dataset called the moons dataset, which comes from scikit-learn. It creates two curved groups of points that look like two half-moons, one for each class. This dataset is useful because it is not separable by a straight line, so a simple linear model struggles. I split this dataset into training data and test data so I can check how well the model generalises.
+First, I train a linear SVM. A linear SVM tries to find a straight line that separates the two classes with the largest possible margin. When I apply it to the moons dataset, the accuracy is okay, but the decision boundary is basically a straight line. It cuts across the curved moons and does not follow their shape properly. This shows that a linear kernel underfits this kind of non-linear data.
+Next, I move to the RBF kernel, which is a very popular kernel for SVMs. The RBF kernel allows the model to learn curved and flexible decision boundaries. I train an SVM with the RBF kernel and start with reasonable values for the parameters C and gamma. When I look at the decision boundary now, it bends around the moons and fits them much better. The training and test accuracy both improve compared to the linear model. This demonstrates how changing the kernel can make a big difference.
+A key part of my project is exploring what C and gamma do. I keep the explanation simple.
+* C controls how much the model cares about mistakes on the training data.
+   * When C is small, the model allows some errors but keeps the boundary smooth and simple.
+   * When C is large, the model tries very hard to classify every training example correctly, and the boundary can become very complicated.
+* Gamma controls how far the influence of each training point reaches.
+   * With a small gamma, each point has a broad influence, and the decision boundary changes slowly, giving a smoother shape.
+   * With a large gamma, each point only influences a tiny area, and the boundary becomes very wiggly and can follow the noise.
+In my notebook, I loop over different values of C and gamma and plot the decision boundaries. When both C and gamma are small, the model is too simple and underfits. When both are very large, the model overfits: the boundary almost hugs every training point, but performance on the test set can get worse. With moderate values of C and gamma, the model fits the moons well and generalises better. These visual experiments are the main teaching part of my tutorial, because you can clearly see how the model changes when I adjust C and gamma.
+I also briefly try a polynomial kernel, where I can change the degree of the polynomial. A lower degree gives a smoother decision boundary, and a higher degree makes it more complex. This supports the same idea: more complex kernels and higher degrees give more flexibility, but also more risk of overfitting if we push them too far.
+To show a more practical workflow, I include an example with GridSearchCV. Instead of guessing values for C and gamma, I define a grid of possible values and use cross-validation on the training data to automatically choose the best combination. Then I evaluate this best model on the test set and plot its decision boundary. This is closer to how SVMs would be tuned in a real data science project.
+Finally, I mention a few ethical points. SVMs are used in real applications such as spam detection, credit scoring, and medical decision support. If the training data is biased or unbalanced, the learned decision boundary can also be biased, even if the accuracy looks high. Also, more complex kernels such as the RBF kernel can be harder to interpret than a simple linear model. When models like this are used in the real world, we need to think about fairness, transparency, and how the model’s decisions affect people.
+To summarise, my project shows that:
+   * a linear SVM can underfit non-linear data like the moons dataset,
+   * kernel choice (for example RBF or polynomial) allows SVMs to learn flexible non-linear boundaries, and
+   * the hyperparameters C and gamma control whether the model underfits, fits well, or overfits.
+All of the code and plots I use come from my Jupyter notebook, and they are stored in my GitHub repository, which is linked in my wrtten submission.
+Thank you for watching my tutorial.
